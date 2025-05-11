@@ -1,11 +1,19 @@
 import express from 'express';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 const app = express();
 const PORT = process.env.PORT || 4000;
 app.use(express.json()); // to parse json body
 
+
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
 // Create routes here
 app.get('/bfhl', (req,res)=> {
-    return res.send("Jai ho");
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.post('/bfhl', (req,res)=> {
