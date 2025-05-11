@@ -1,34 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Number Array API Test</title>
+  <meta charset="UTF-8">
+  <title>Send Array to API</title>
 </head>
 <body>
-  <h2>Test API</h2>
-
-  <label>Enter numbers (comma separated):</label><br>
-  <input type="text" id="numberInput" placeholder="e.g. 1,2,3,4,5"><br><br>
-  <button onclick="sendData()">Send</button>
-
-  <h3>Response:</h3>
-  <pre id="responseOutput"></pre>
-
-  <script>
-    async function sendData() {
-      const input = document.getElementById("numberInput").value;
-      const numberArray = input.split(',').map(num => num.trim());
-
-      const response = await fetch('https://your-api.onrender.com/bfhl', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ data: numberArray })
-      });
-
-      const result = await response.json();
-      document.getElementById("responseOutput").textContent = JSON.stringify(result, null, 2);
-    }
-  </script>
+  <h2>Enter comma-separated numbers:</h2>
+  <form action="/bfhl" method="POST">
+    
+    <input type="text" name="numbers" placeholder="e.g., 1,2,3,4,5" required />
+    <button type="submit">Submit</button>
+  </form>
 </body>
 </html>
